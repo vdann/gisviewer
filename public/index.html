@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Layout Demo</title>
+
+	<link rel="stylesheet" type="text/css" href="vendor/jquery-ui-layout-v1.4.4/layout-default-latest.css">
+
+	<script type="text/javascript" src="vendor/jquery-v1.11.1/jquery.js"></script>
+	<script type="text/javascript" src="vendor/jquery-ui-v1.9.2/jquery-ui.js"></script>
+<!--	<script type="text/javascript" src="js/jquery-ui.js"></script> -->
+	<script type="text/javascript" src="vendor/jquery-ui-layout-v1.4.4/jquery.layout-latest.js"></script>
+
+	<link href="vendor/jsoneditor-v5.10.1/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
+	<script src="vendor/jsoneditor-v5.10.1/dist/jsoneditor.min.js"></script>
+	
+	<script type="text/javascript">
+
+	var myLayout;
+
+	$(document).ready(function(){
+
+		myLayout = $('body').layout({
+			resizable: true,
+			livePaneResizing: true,
+			west__minSize: 50
+		,	east__minSize: 200
+		});
+
+		var container = document.getElementById("jsoneditor");
+		var options = {
+			mode: 'tree'
+		};
+		var editor = new JSONEditor(container, options);
+ 
+		var json = {
+			"Array": [1, 2, 3],
+			"Boolean": true,
+			"Null": null,
+			"Number": 123,
+			"Object": {"a": "b", "c": "d"},
+			"String": "Hello World"
+		};
+		editor.set(json);
+ 	});
+
+	</script>
+
+</head>
+<body>
+
+<!-- manually attach allowOverflow method to pane -->
+<div class="ui-layout-north"> North </div>
+
+<div class="ui-layout-west">West
+	<p><button onclick="myLayout.close('west')">Close Me</button></p>
+</div>
+
+<div class="ui-layout-south"> South
+	<p><button onclick="myLayout.toggle('north')">Toggle North Pane</button></p>
+</div>
+
+<div class="ui-layout-east" id="jsoneditor"> 
+	
+	<!-- <div id="jsoneditor" style="width: 400px; height: 400px;"></div> -->
+</div>
+
+<div class="ui-layout-center">
+	This center pane auto-sizes to fit the space <I>between</I> the 'border-panes'
+	<p>This layout uses default options, except for a minSize on East and West panes</p>
+	<p>The Close and Toggle buttons are examples of <B>custom buttons</B></p>
+	<p><a href="http://layout.jquery-dev.com/demos.cfm">UI Layout Demos page</a></p>
+	<p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p>
+	<p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p>
+	<p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p>
+	<p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p><p>...</p>
+</div>
+
+</body>
+</html>
